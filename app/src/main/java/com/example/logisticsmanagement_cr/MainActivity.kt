@@ -1,6 +1,5 @@
 package com.example.logisticsmanagement_cr
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import com.example.logisticsmanagement_cr.databinding.ActivityMainBinding
@@ -29,10 +28,10 @@ class MainActivity : BaseActivity() {
             val user = binding.nameText.text.toString()
             val pwd = binding.passwordText.text.toString()
             if (users[user] == pwd) { // 用户名密码对应正确，跳转到下一界面，传递用户名及密码数据
-                val intent = Intent(this, SecondActivity::class.java)
-                intent.putExtra("username", user)
-                intent.putExtra("password", pwd)
-                startActivity(intent)
+                myStartActivity<SecondActivity>(this) {
+                    putExtra("username", user)
+                    putExtra("password", pwd)
+                }
             } else { // 不对应，使用Toast给出提示
                 Toast.makeText(
                     this,
